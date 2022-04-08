@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Dynamic ProgrammingClimbing Stairs题目描述给定 n 节台阶，每次可以走一步或走两步，求一共有多少种方式可以走完这些台阶。输入输出样例输入是一个数字，表示台阶数量；输出是爬台阶的总方式。 题解 斐波那契，设 d[i] 表示走到第 i 阶的方法数。因为每次可以走一步或者两步，所以第 i 阶可以从第 i -1 阶或 i - 2 阶到达。故走到第 i 阶的方法数等于走到第">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hello-sekai">
+<meta property="og:url" content="http://example.com/2022/04/08/hello-sekai/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Dynamic ProgrammingClimbing Stairs题目描述给定 n 节台阶，每次可以走一步或走两步，求一共有多少种方式可以走完这些台阶。输入输出样例输入是一个数字，表示台阶数量；输出是爬台阶的总方式。 题解 斐波那契，设 d[i] 表示走到第 i 阶的方法数。因为每次可以走一步或者两步，所以第 i 阶可以从第 i -1 阶或 i - 2 阶到达。故走到第 i 阶的方法数等于走到第">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-08T06:06:36.000Z">
+<meta property="article:modified_time" content="2022-04-08T06:07:42.325Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>hello-sekai</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/04/08/foo/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/04/08/hello-sekai/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/04/08/hello-sekai/&text=hello-sekai"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/04/08/hello-sekai/&title=hello-sekai"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/04/08/hello-sekai/&is_video=false&description=hello-sekai"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hello-sekai&body=Check out this article: http://example.com/2022/04/08/hello-sekai/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/04/08/hello-sekai/&title=hello-sekai"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/04/08/hello-sekai/&title=hello-sekai"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/04/08/hello-sekai/&title=hello-sekai"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/04/08/hello-sekai/&title=hello-sekai"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/04/08/hello-sekai/&name=hello-sekai&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/04/08/hello-sekai/&t=hello-sekai"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dynamic-Programming"><span class="toc-number">1.</span> <span class="toc-text">Dynamic Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Climbing-Stairs"><span class="toc-number">1.1.</span> <span class="toc-text">Climbing Stairs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#House-Robber"><span class="toc-number">1.2.</span> <span class="toc-text">House Robber</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Arithmetic-Slices"><span class="toc-number">1.3.</span> <span class="toc-text">Arithmetic Slices</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Minimum-Paths-Sum"><span class="toc-number">1.4.</span> <span class="toc-text">Minimum Paths Sum</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#01-Matrix"><span class="toc-number">1.5.</span> <span class="toc-text">01 Matrix</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Maximal-Square"><span class="toc-number">1.6.</span> <span class="toc-text">Maximal Square</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Perfect-Squares"><span class="toc-number">1.7.</span> <span class="toc-text">Perfect Squares</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Decode-Ways"><span class="toc-number">1.8.</span> <span class="toc-text">Decode Ways</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Word-Break"><span class="toc-number">1.9.</span> <span class="toc-text">Word Break</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Longest-Increasing-Subsequence"><span class="toc-number">1.10.</span> <span class="toc-text">Longest Increasing Subsequence</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        hello-sekai
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">John Doe</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-04-08T06:06:36.000Z" itemprop="datePublished">2022-04-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="Dynamic-Programming"><a href="#Dynamic-Programming" class="headerlink" title="Dynamic Programming"></a>Dynamic Programming</h3><h4 id="Climbing-Stairs"><a href="#Climbing-Stairs" class="headerlink" title="Climbing Stairs"></a>Climbing Stairs</h4><p><strong>题目描述</strong><br>给定 n 节台阶，每次可以走一步或走两步，求一共有多少种方式可以走完这些台阶。<br><strong>输入输出样例</strong><br>输入是一个数字，表示台阶数量；输出是爬台阶的总方式。</p>
+<p><strong>题解</strong></p>
+<p>斐波那契，设 d[i] 表示走到第 i 阶的方法数。因为每次可以走一步或者两步，所以第 i 阶可以从第 i -1 阶或 i - 2 阶到达。故走到第 i 阶的方法数等于走到第 i - 1 阶的方法数加上第 i - 2 阶的方法数，从而得到状态转移方程 d[i] = d[i-1] + d[i-2]</p>
+<p>动态规划的核心就是求状态转移方程并且避免重复运算</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">climb_stairs</span>(n: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">2</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">prev1</span> = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">prev2</span> = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">cur</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">_</span> <span class="keyword">in</span> <span class="number">2</span>..n &#123;</span><br><span class="line">        cur = prev1 + prev2;</span><br><span class="line">        prev1 = prev2;</span><br><span class="line">        prev2 = cur;</span><br><span class="line">    &#125;</span><br><span class="line">    cur</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="House-Robber"><a href="#House-Robber" class="headerlink" title="House Robber"></a>House Robber</h4><p><strong>题目描述</strong><br>假如你是一个劫匪，并且决定抢劫一条街上的房子，每个房子内的钱财数量各不相同。如果<br>你抢了两栋相邻的房子，则会触发警报机关。求在不触发机关的情况下最多可以抢劫多少钱。<br><strong>输入输出样例</strong><br>输入是一个一维数组，表示每个房子的钱财数量；输出是劫匪可以最多抢劫的钱财数量。</p>
+<p><strong>题解</strong><br>定义一个数组 dp，dp[i] 表示抢劫到第 i 个房子时，可以抢劫的最大数量。我们考虑 dp[i]，<br>此时可以抢劫的最大数量有两种可能，一种是我们选择不抢劫这个房子，此时累计的金额即为<br>dp[i-1]；另一种是我们选择抢劫这个房子，但也由此可知我们不<br>能够抢劫第 i-1 个房子（否则会触发警报机关），所以此时累计的最大金额只能是 dp[i-2] + nums[i] 。因此本题的状态转移方程为 <code>dp[i] = max(dp[i-1], nums[i] + dp[i-2])</code></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">rob</span>(nums: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    <span class="keyword">match</span> nums.<span class="title function_ invoke__">len</span>() &#123;</span><br><span class="line">        <span class="number">0</span> =&gt; <span class="keyword">return</span> <span class="number">0</span>,</span><br><span class="line">        <span class="number">1</span> =&gt; <span class="keyword">return</span> nums[<span class="number">0</span>],</span><br><span class="line">        _ =&gt; ()</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">prev1</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">prev2</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">cur</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">num</span> <span class="keyword">in</span> nums &#123;</span><br><span class="line">        cur = std::cmp::<span class="title function_ invoke__">max</span>(prev2, prev1 + num);</span><br><span class="line">        prev1 = prev2;</span><br><span class="line">        prev2 = cur;</span><br><span class="line">    &#125;</span><br><span class="line">    cur</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Arithmetic-Slices"><a href="#Arithmetic-Slices" class="headerlink" title="Arithmetic Slices"></a>Arithmetic Slices</h4><p><strong>题目描述</strong></p>
+<p>给定一个数组，求这个数组中等差的子数组一共有多少个</p>
+<p><strong>输入输出样例</strong></p>
+<p>输入是一个一维数组，输出是满足等差条件的连续子数组个数</p>
+<p>Input: nums = [1,2,3,4,7,7,8,9]</p>
+<p>Output: 4</p>
+<p>在这个样例中，等差数列有 [1,2,3], [2,3,4], [1,2,3,4], [7,8,9]</p>
+<p><strong>题解</strong></p>
+<p>设 dp[i] 表示以原数组第 i 个元素为结尾的等差数组个数，状态转移方程为 dp[i] = dp[i-1] + 1 （需注意，dp[i] 可为 0）</p>
+<p>则总等差数组个数为 <script type="math/tex">\begin{align}\sum\end{align}</script> dp[i]</p>
+<p>建一个长度为 3 的窗口 triple ，如满足 tripe[3] - triple[2] = triple[2] - triple[1] （不使用加法以防止整型溢出；不用位运算因数组元素可能为负），则满足条件，记录即可</p>
+<p>空间复杂度优化：用一个变量去储存上一个 dp ，用一个变量去储存 sum</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">number_of_arithmetic_slices</span>(nums: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> nums.<span class="title function_ invoke__">len</span>() &lt; <span class="number">3</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">sum</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">last</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">triple</span> <span class="keyword">in</span> nums.<span class="title function_ invoke__">windows</span>(<span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> triple[<span class="number">2</span>] - triple[<span class="number">1</span>] == triple[<span class="number">1</span>] - triple[<span class="number">0</span>] &#123;</span><br><span class="line">            sum += last + <span class="number">1</span>;</span><br><span class="line">            last = last + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            last = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Minimum-Paths-Sum"><a href="#Minimum-Paths-Sum" class="headerlink" title="Minimum Paths Sum"></a>Minimum Paths Sum</h4><p><strong>题目描述</strong></p>
+<p>给定一个 m x n 大小的非负整数矩阵，求从左上角开始到右下角结束的、经过数字和最小的路径；。每次只能向右移动一格或向下移动一格。</p>
+<p><strong>输入输出样例</strong></p>
+<p>输入是一个二维数组，输出是最优路径的数字和</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[[1,3,1],</span><br><span class="line">[1,5,1]</span><br><span class="line">4,2,1]]</span><br><span class="line">Output:</span><br><span class="line">7</span><br></pre></td></tr></table></figure>
+<p>说明：在这个样例中，最短路径为 1-&gt;3-&gt;1-&gt;1-&gt;1</p>
+<p><strong>题解</strong></p>
+<p>设 dp[i][j] 表示从左上角开始到 (i,j) 位置的最优路径长，则状态转移方程为： </p>
+<p>dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j] （grid 表示给定的矩阵）</p>
+<p>注意边界讨论即可</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">min_path_sum</span>(grid: <span class="type">Vec</span>&lt;<span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;&gt;) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">dp</span> = <span class="built_in">vec!</span>[<span class="built_in">vec!</span>[<span class="number">0</span>; grid[<span class="number">0</span>].<span class="title function_ invoke__">len</span>()]; grid.<span class="title function_ invoke__">len</span>()];</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">0</span>..grid.<span class="title function_ invoke__">len</span>() &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> <span class="number">0</span>..grid[<span class="number">0</span>].<span class="title function_ invoke__">len</span>() &#123;</span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span> &amp;&amp; j == <span class="number">0</span> &#123;</span><br><span class="line">                dp[i][j] = grid[i][j];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> i == <span class="number">0</span> &#123;</span><br><span class="line">                dp[i][j] = dp[i][j-<span class="number">1</span>] + grid[i][j];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> j == <span class="number">0</span> &#123;</span><br><span class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j] + grid[i][j];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dp[i][j] = std::cmp::<span class="title function_ invoke__">min</span>(dp[i][j-<span class="number">1</span>], dp[i-<span class="number">1</span>][j]) + grid[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dp.<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>().<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>().<span class="title function_ invoke__">to_owned</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="01-Matrix"><a href="#01-Matrix" class="headerlink" title="01 Matrix"></a>01 Matrix</h4><p><strong>题目描述</strong></p>
+<p>给定一个由 0 和 1 组成的二维矩阵，求每个位置到最近的 0 的距离（只允许用上移下移左移右移的线性组合来衡量距离），输入会确保矩阵至少含一个 0 ，且约定 0 到最近的 0 的距离为 0</p>
+<p><strong>输入输出样例</strong></p>
+<p>输入一个二维数组，输出一个同样大小的数组，该数组每个元素表示对应位置距最近的 0 的距离</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[[0,0,0],</span><br><span class="line">[0,1,0],</span><br><span class="line">[1,1,1]]</span><br><span class="line">Output:</span><br><span class="line">[[0,0,0],</span><br><span class="line">[0,1,0],</span><br><span class="line">[1,2,1]]</span><br></pre></td></tr></table></figure>
+<p><strong>题解</strong></p>
+<p>设 dp[i][j] 表示 (i, j) 距最近的 0 的距离，那么状态转移方程为：</p>
+<script type="math/tex; mode=display">\mathrm{dp[i][j] = \min \{dp[i][j-1], dp[i-1][j], dp[i][j+1], dp[i+1][j]\} + 1\;\;((i > 0) \wedge (j > 0) \wedge (i < m - 1) \wedge (j < n - 1))}</script><p>注意下标越界的 dp 忽略，如 i = 0 时，取最小值不考虑 <script type="math/tex">dp[i-1][j]</script></p>
+<p>从 (0,0) 到 (m-1,n-1) 遍历一趟能保证对每个 dp[i][j], 可以让 dp[i][j-1], dp[i-1][j] 的值被考虑到</p>
+<p>从 (m-1,n-1) 到 (0,0) 遍历一趟能保证对每个 dp[i][j], 可以让 dp[i][j+1], dp[i+1][j] 的值被考虑到</p>
+<p>因此需要来回遍历两次</p>
+<p>因为下标越界的 dp 忽略，为确保能取到交集，使用如下策略：</p>
+<p>将 dp[i][j] 全部初始化为 <script type="math/tex">\begin{align}\left\{\begin{matrix}0 & \mathrm{matrix[i][j] = 0}\\ \mathrm{i32::MAX - 1} & \mathrm{matrix[i][j]} \neq 0\end{matrix}\right.\end{align}</script> </p>
+<p>且状态转移方程分为四个部分：</p>
+<p><code>std::cmp::min(dp[i][j], dp[i-1][j] + 1);</code></p>
+<p><code>std::cmp::min(dp[i][j], dp[i+1][j] + 1);</code></p>
+<p><code>std::cmp::min(dp[i][j], dp[i][j-1] + 1);</code></p>
+<p><code>std::cmp::min(dp[i][j], dp[i-1][j+1] + 1);</code></p>
+<p>仅在下标不越界时调用方程</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">update_matrix</span>(matrix: <span class="type">Vec</span>&lt;<span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;&gt;) <span class="punctuation">-&gt;</span> <span class="type">Vec</span>&lt;<span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">m</span> = matrix.<span class="title function_ invoke__">len</span>();</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">n</span> = matrix[<span class="number">0</span>].<span class="title function_ invoke__">len</span>();</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">dp</span> = <span class="built_in">vec!</span>[<span class="built_in">vec!</span>[<span class="number">0</span>; n]; m];</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">0</span>..m &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> <span class="number">0</span>..n &#123;</span><br><span class="line">            <span class="keyword">if</span> matrix[i][j] == <span class="number">0</span> &#123;</span><br><span class="line">                dp[i][j] = <span class="number">0</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dp[i][j] = i32::MAX - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">0</span>..m &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> <span class="number">0</span>..n &#123;</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> &#123;</span><br><span class="line">                dp[i][j] = std::cmp::<span class="title function_ invoke__">min</span>(dp[i][j], dp[i-<span class="number">1</span>][j] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> j &gt; <span class="number">0</span> &#123;</span><br><span class="line">                dp[i][j]= std::cmp::<span class="title function_ invoke__">min</span>(dp[i][j], dp[i][j-<span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> (<span class="number">0</span>..m).<span class="title function_ invoke__">rev</span>() &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> (<span class="number">0</span>..n).<span class="title function_ invoke__">rev</span>() &#123;</span><br><span class="line">            <span class="keyword">if</span> i &lt; m - <span class="number">1</span> &#123;</span><br><span class="line">                dp[i][j]= std::cmp::<span class="title function_ invoke__">min</span>(dp[i][j], dp[i+<span class="number">1</span>][j] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> j &lt; n - <span class="number">1</span> &#123;</span><br><span class="line">                dp[i][j]= std::cmp::<span class="title function_ invoke__">min</span>(dp[i][j], dp[i][j+<span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Maximal-Square"><a href="#Maximal-Square" class="headerlink" title="Maximal Square"></a>Maximal Square</h4><p><strong>题目描述</strong></p>
+<p>给定一个二维的 0-1 矩阵，求全由 1 构成的最大正方形的面积</p>
+<p><strong>输入输出样例</strong></p>
+<p>输入是一个二维数组，输出一个 32 位整型</p>
+<p><strong>题解</strong></p>
+<p>设 dp[i][j] 表示以 (i,j) 所在的 entry 为右下角的最大正方形的长度，比如对于矩阵 <script type="math/tex">\left[\begin{matrix}1&1&1&0\\1&1&0&1\\0&0&0&1\\1&1&1&1\end{matrix}\right]</script> ,  以 (0,1) 为右下角的最大正方形即它本身，长为 1 ，所以 dp[0][1] = 1；以 (0, 3) 为右下角没有正方形，因为 (0, 3) 对应的元素为 0 ，所以 dp[0][3] = 0 ；以 (1, 1) 为右下角的正方形最大边长为 2 ，所以 dp[1][1] = 2</p>
+<p>当 (i,j) 所在的 entry 为 1 时，以之为右下角的最大正方形的长度取决于其分别以左、右、左上 entry 为右下角的最大正方形的长度中的最小者（可以用假设法分析，如果不选取最小者，则补入 (i, j) 这个 entry 后构成不了一个新的正方形），换言之，<script type="math/tex">\mathrm{dp[i][j]} = \left\{\begin{matrix}\mathrm{\min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]) + 1}\;\;&\mathrm{dp[i][j] = 1}\\ 0 \;\;&\mathrm{dp[i][j] = 0}\end{matrix}\right.</script></p>
+<p>因此，初始化时将 dp 置 0，而且遍历时还是需要讨论边界。第 0 行和第 0 列所在 entry 只可能构成边长为 0 和边长为 1 的正方形，且构成情况恰取决于自身是 0 还是 1</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">maximal_square</span>(matrix: <span class="type">Vec</span>&lt;<span class="type">Vec</span>&lt;<span class="type">char</span>&gt;&gt;) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">m</span> = matrix.<span class="title function_ invoke__">len</span>();</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">n</span> = <span class="keyword">match</span> m &#123;</span><br><span class="line">        <span class="number">0</span> =&gt; <span class="number">0</span>,</span><br><span class="line">        _ =&gt; matrix[<span class="number">0</span>].<span class="title function_ invoke__">len</span>(),</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">dp</span> = <span class="built_in">vec!</span>[<span class="built_in">vec!</span>[<span class="number">0</span>; n]; m];</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">maxsqlen</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">0</span>..m &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> <span class="number">0</span>..n &#123;</span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span> || j == <span class="number">0</span> &#123;</span><br><span class="line">                dp[i][j] = matrix[i][j] <span class="keyword">as</span> <span class="type">i32</span> - <span class="string">&#x27;0&#x27;</span> <span class="keyword">as</span> <span class="type">i32</span>;</span><br><span class="line">                maxsqlen = std::cmp::<span class="title function_ invoke__">max</span>(maxsqlen, dp[i][j]);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> matrix[i][j] == <span class="string">&#x27;1&#x27;</span> &#123;</span><br><span class="line">                dp[i][j] = std::cmp::<span class="title function_ invoke__">min</span>(std::cmp::<span class="title function_ invoke__">min</span>(dp[i][j-<span class="number">1</span>], dp[i-<span class="number">1</span>][j]), dp[i-<span class="number">1</span>][j-<span class="number">1</span>]) + <span class="number">1</span>;</span><br><span class="line">                maxsqlen = std::cmp::<span class="title function_ invoke__">max</span>(maxsqlen, dp[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    maxsqlen * maxsqlen</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Perfect-Squares"><a href="#Perfect-Squares" class="headerlink" title="Perfect Squares"></a>Perfect Squares</h4><p><strong>题目描述</strong></p>
+<p>给定一定正整数，求其最少可以由几个完全平方数相加构成。</p>
+<p><strong>输入输出样例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 13</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+<p>在这个样例中，13 的最少构成方法为 4 + 9</p>
+<p><strong>题解</strong></p>
+<p>设数 i 最少可以由 dp[i] 个完全平方数相加构成。i 可由 i - k<sup>2</sup> 加上一个 k<sup>2</sup> 得到( <script type="math/tex">k^2\in [1, i)</script> )，所以 dp[i] 可能由 dp[i - k<sup>2</sup>] + 1 得到。</p>
+<p>从而状态转移方程为 dp[i] = min(dp[i-k<sup>2</sup>])   (<script type="math/tex">k^2\in [1, i)</script>)</p>
+<p>为方便，将 dp[0] 设为 0 ，同时除 dp[0] 外的所有 dp 值设为 i32::MAX -1 </p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">num_squares</span>(n: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">n</span> = n <span class="keyword">as</span> <span class="type">usize</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">dp</span> = <span class="built_in">vec!</span>[i32::MAX - <span class="number">1</span>; n + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">1</span>..= n &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">k</span> <span class="keyword">in</span> <span class="number">1</span>..= (i <span class="keyword">as</span> <span class="type">f64</span>).<span class="title function_ invoke__">sqrt</span>() <span class="keyword">as</span> <span class="type">usize</span> &#123;</span><br><span class="line">            dp[i] = std::cmp::<span class="title function_ invoke__">min</span>(dp[i], dp[i- k*k] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dp[n]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Decode-Ways"><a href="#Decode-Ways" class="headerlink" title="Decode Ways"></a>Decode Ways</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">num_decodings</span>(s: <span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> s.<span class="title function_ invoke__">len</span>() == <span class="number">1</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> s == <span class="string">&quot;0&quot;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">dp</span> = <span class="built_in">vec!</span>[<span class="number">0</span>; s.<span class="title function_ invoke__">len</span>()];</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">slice</span> = &amp;s[<span class="number">0</span>..<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">n</span>: <span class="type">i32</span> = slice.<span class="title function_ invoke__">parse</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> slice.<span class="title function_ invoke__">starts_with</span>(<span class="string">&quot;0&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> slice.<span class="title function_ invoke__">ends_with</span>(<span class="string">&quot;0&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> n &gt; <span class="number">26</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> n &gt; <span class="number">26</span> &#123;</span><br><span class="line">            dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            dp[<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">2</span>..s.<span class="title function_ invoke__">len</span>() &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">slice</span> = &amp;s[i-<span class="number">1</span>..=i];</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">n</span>: <span class="type">i32</span> = slice.<span class="title function_ invoke__">parse</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">        <span class="keyword">if</span> !slice.<span class="title function_ invoke__">ends_with</span>(<span class="string">&quot;0&quot;</span>) &#123;</span><br><span class="line">            dp[i] += dp[i-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> !slice.<span class="title function_ invoke__">starts_with</span>(<span class="string">&quot;0&quot;</span>) &amp;&amp; n &lt;= <span class="number">26</span> &#123;</span><br><span class="line">            dp[i] += dp[i-<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dp.<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>().<span class="title function_ invoke__">to_owned</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Word-Break"><a href="#Word-Break" class="headerlink" title="Word Break"></a>Word Break</h4><p>这题是与分割完全平方数那题类似的，设 dp[i] 表示前 i 个字符构成的字符串（长度为 i）是否满足分割条件（能否从 dic 中找到一个字符串与前 i 个字符构成的子串匹配），则状态转移方程为：<script type="math/tex">\begin{align}\mathrm{dp[i]}= \bigvee_{k=0}^{\mathrm{dic.len()}}\left\{\begin{matrix}\mathrm{dp[i-dic[k].len()]}\;\;&(\mathrm{i >= dic[k].len()) }\\\mathrm{false}\;\;&\mathrm{(i < dic[k].len())}\end{matrix}\right.\end{align}</script></p>
+<p>为什么 i 是指定当前子串的长度而非子串尾的下标呢？因为这样更加契合“断点”的概念。如果用下标来划定断点，那么需要相邻的两个下标才能确定一个断点。这样不便于讨论</p>
+<p>从而，将 dp[0] 设为 true ，dp 中其他值设为 false , 遍历到 dp[s.len()] 结束，dp 的大小需为 s.len() + 1</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">word_break</span>(s: <span class="type">String</span>, word_dict: <span class="type">Vec</span>&lt;<span class="type">String</span>&gt;) <span class="punctuation">-&gt;</span> <span class="type">bool</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">dp</span> = <span class="built_in">vec!</span>[<span class="literal">false</span>; s.<span class="title function_ invoke__">len</span>() + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">1</span> ..= s.<span class="title function_ invoke__">len</span>() &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">word</span> <span class="keyword">in</span> word_dict.<span class="title function_ invoke__">iter</span>() &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">len</span> = word.<span class="title function_ invoke__">len</span>();</span><br><span class="line">            <span class="keyword">if</span> i &gt;= len &amp;&amp; &amp;s[i-len..i] == word &#123;</span><br><span class="line">                <span class="keyword">if</span> dp[i-len] == <span class="literal">true</span> &#123;</span><br><span class="line">                    dp[i] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dp.<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>().<span class="title function_ invoke__">to_owned</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Longest-Increasing-Subsequence"><a href="#Longest-Increasing-Subsequence" class="headerlink" title="Longest Increasing Subsequence"></a>Longest Increasing Subsequence</h4><p><strong>题目描述</strong></p>
+<p>给定一个整数数组，求最长的递增子序列长度</p>
+<p><strong>输入输出样例</strong></p>
+<p>输入是一个以一维数组，输出是一个正整数</p>
+<p><strong>解法1</strong></p>
+<p>设 dp[i] 表示以 nums[i] 为结尾的最长子序列的长度，易知状态转移方程为：</p>
+<script type="math/tex; mode=display">\begin{align}\mathrm{dp[i] = 1 + \max(\{dp(k)\,|\,(0\leq k< i)\wedge (nums[i]>nums[i-k])\}})\end{align}</script><p>将 dp[i] 和 max 都初始化为 1，表示当 nums[i] 之前的所有元素都不小于 nums[i] 时，dp[i] 为 1（以它为结尾的最长子序列只有它自身）</p>
+<p>因为要求所有子序列中最长的子序列的长度，所以用变量 max 去记录最大的 dp[i]</p>
+<p>此解法时间复杂度为 O(n<sup>2</sup>)</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">length_of_lis</span>(nums: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> nums.<span class="title function_ invoke__">len</span>() &lt;= <span class="number">1</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> nums.<span class="title function_ invoke__">len</span>() <span class="keyword">as</span> <span class="type">i32</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">dp</span> = <span class="built_in">vec!</span>[<span class="number">1</span>; nums.<span class="title function_ invoke__">len</span>()];</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">max</span> = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">1</span>..nums.<span class="title function_ invoke__">len</span>() &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> (<span class="number">0</span>..=i-<span class="number">1</span>).<span class="title function_ invoke__">rev</span>() &#123;</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[j] &#123;</span><br><span class="line">                dp[i] = std::cmp::<span class="title function_ invoke__">max</span>(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">                max = std::cmp::<span class="title function_ invoke__">max</span>(dp[i], max);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    max</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>解法2</strong></p>
+<p>此题可用贪心算法，每次都储存递增子序列的末位最小值。因为子序列递增，所以当子序列长度一定时，末位越小，后续能容纳的序列也就越多。最终也可得到最长子序列长度，时间复杂度为 O(logn), 具体为实现如下：</p>
+<p>新建数组 d，设 d[i] 表示长度为 i + 1 的所有递增子序列中的末位的最小值。比如，d = [2, 5] 中，d[0] = 2 表示在所有长为 1 的递增子序列中，递增子序列末位的最小值是 2 ，d[1] 表示所有长为 2 的递增子序列中，递增子序列末位的最小值是 5 。符合这个条件的 nums 可以是 [3,7,2,5] ，因为长为 1 的递增子序列分别为 [3] , [7] , [2] , [5] , 其中末位最小为 2 ；长为 2 的递增子序列有 [3,7] , [2,5] , [3,5] ，其中末位最小为 5 </p>
+<p>因为 d[i] 表示长度为 i + 1 的所有递增子序列中的末位的最小值，所以数组 d 的长度即为子序列长度的最大值。要维护此数组 d ，需要对 nums 进行遍历，并采用如下策略（利用 d 的递增性）：</p>
+<ul>
+<li>如果 d 为空，则 d[0] = num</li>
+<li>如果 num 比 d[0] 要小，则 d[0] = num</li>
+<li><p>如果 num 比 d 的末位元素要大，则 d.push(num) ，表示得到了一个更长的子序列，其末位为 num</p>
+</li>
+<li><p>如果 num 介于 d 的两个元素之间，则将后一个元素替换成 num</p>
+</li>
+<li>否则，不进行操作，并读取下一个 num</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">length_of_lis</span>(nums: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> nums.<span class="title function_ invoke__">len</span>() &lt;= <span class="number">1</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> nums.<span class="title function_ invoke__">len</span>() <span class="keyword">as</span> <span class="type">i32</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">d</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = Vec::<span class="title function_ invoke__">new</span>();</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">num</span> <span class="keyword">in</span> nums &#123;</span><br><span class="line">        <span class="keyword">if</span> d.<span class="title function_ invoke__">len</span>() == <span class="number">0</span> || &amp;num &gt; d.<span class="title function_ invoke__">last</span>().<span class="title function_ invoke__">unwrap</span>() &#123;</span><br><span class="line">            d.<span class="title function_ invoke__">push</span>(num)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">0</span>..d.<span class="title function_ invoke__">len</span>() &#123;</span><br><span class="line">                <span class="keyword">if</span> num &lt; d[i] &amp;&amp; (i == <span class="number">0</span> || num &gt; d[i-<span class="number">1</span>] ) &#123;</span><br><span class="line">                    d[i] = num;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    d.<span class="title function_ invoke__">len</span>() <span class="keyword">as</span> <span class="type">i32</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>优化</strong></p>
+<p>因为 d 是严格增序的，所以查找 num &lt; d[i] 时不必线性遍历，可以用二分查找</p>
+<p>这里利用 rust 的 binary_search(num).unwrap_or_else(|x| x ) ，可以产生如下效果：</p>
+<ul>
+<li>如果数组中每一位都比 num 小（换言之，num 大于数组的末位），则返回数组末位后一位的 index</li>
+<li>如果数组中有 num ，则返回其 index</li>
+<li>如果数组中每一位都比 num 大（换言之，num 小于数组第一位），则返回 index = 0</li>
+<li>如果 num 介于数组某两位之间，则返回后一位（较大的那一位）的 index</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">length_of_lis</span>(nums: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> nums.<span class="title function_ invoke__">len</span>() &lt;= <span class="number">1</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> nums.<span class="title function_ invoke__">len</span>() <span class="keyword">as</span> <span class="type">i32</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">d</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = Vec::<span class="title function_ invoke__">new</span>();</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">num</span> <span class="keyword">in</span> nums &#123;</span><br><span class="line">        <span class="keyword">if</span> d.<span class="title function_ invoke__">len</span>() == <span class="number">0</span> &#123;</span><br><span class="line">            d.<span class="title function_ invoke__">push</span>(num)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">index</span> = d.<span class="title function_ invoke__">binary_search</span>(&amp;num).<span class="title function_ invoke__">unwrap_or_else</span>(|x| x);</span><br><span class="line">            <span class="keyword">if</span> index &gt; d.<span class="title function_ invoke__">len</span>() - <span class="number">1</span> &#123;</span><br><span class="line">                d.<span class="title function_ invoke__">push</span>(num);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> index == <span class="number">0</span> || num &gt; d[index - <span class="number">1</span>] &#123;</span><br><span class="line">                d[index] = num;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    d.<span class="title function_ invoke__">len</span>() <span class="keyword">as</span> <span class="type">i32</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dynamic-Programming"><span class="toc-number">1.</span> <span class="toc-text">Dynamic Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Climbing-Stairs"><span class="toc-number">1.1.</span> <span class="toc-text">Climbing Stairs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#House-Robber"><span class="toc-number">1.2.</span> <span class="toc-text">House Robber</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Arithmetic-Slices"><span class="toc-number">1.3.</span> <span class="toc-text">Arithmetic Slices</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Minimum-Paths-Sum"><span class="toc-number">1.4.</span> <span class="toc-text">Minimum Paths Sum</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#01-Matrix"><span class="toc-number">1.5.</span> <span class="toc-text">01 Matrix</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Maximal-Square"><span class="toc-number">1.6.</span> <span class="toc-text">Maximal Square</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Perfect-Squares"><span class="toc-number">1.7.</span> <span class="toc-text">Perfect Squares</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Decode-Ways"><span class="toc-number">1.8.</span> <span class="toc-text">Decode Ways</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Word-Break"><span class="toc-number">1.9.</span> <span class="toc-text">Word Break</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Longest-Increasing-Subsequence"><span class="toc-number">1.10.</span> <span class="toc-text">Longest Increasing Subsequence</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/04/08/hello-sekai/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/04/08/hello-sekai/&text=hello-sekai"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/04/08/hello-sekai/&title=hello-sekai"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/04/08/hello-sekai/&is_video=false&description=hello-sekai"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hello-sekai&body=Check out this article: http://example.com/2022/04/08/hello-sekai/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/04/08/hello-sekai/&title=hello-sekai"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/04/08/hello-sekai/&title=hello-sekai"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/04/08/hello-sekai/&title=hello-sekai"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/04/08/hello-sekai/&title=hello-sekai"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/04/08/hello-sekai/&name=hello-sekai&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/04/08/hello-sekai/&t=hello-sekai"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2022
+    John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
