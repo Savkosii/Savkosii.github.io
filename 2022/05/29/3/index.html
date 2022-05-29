@@ -14,7 +14,7 @@
 <meta property="og:description" content="Create Shortcut for File in DesktopSuppose the source location is foo and destination location is bar, use the following command: 1$ ln -s foo bar Create Shortcut for Directory in DesktopAdd a simple">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-29T04:35:06.000Z">
-<meta property="article:modified_time" content="2022-05-29T06:34:53.897Z">
+<meta property="article:modified_time" content="2022-05-29T15:21:26.385Z">
 <meta property="article:author" content="Savkosii">
 <meta name="twitter:card" content="summary">
     
@@ -50,7 +50,8 @@
 	
 <meta name="generator" content="Hexo 6.1.0"></head>
 
-<body class="max-width mx-auto px3 ltr">    
+<body class="max-width mx-auto px3 ltr">
+    
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
@@ -143,16 +144,16 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ln</span> -s foo bar</span><br></pre></td></tr></table></figure>
 <h2 id="Create-Shortcut-for-Directory-in-Desktop"><a href="#Create-Shortcut-for-Directory-in-Desktop" class="headerlink" title="Create Shortcut for Directory in Desktop"></a>Create Shortcut for Directory in Desktop</h2><p>Add a simple <code>-r</code> flag to create link recursively:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ln</span> -rs foo bar</span><br></pre></td></tr></table></figure>
-<h2 id="Add-Customized-Program-to-Favorite"><a href="#Add-Customized-Program-to-Favorite" class="headerlink" title="Add Customized Program to Favorite"></a>Add Customized Program to Favorite</h2><p>Suppose the program is named <code>foo</code>, the following instrution helps adding the program entry into both menu bar and favorite.</p>
+<h2 id="Add-Customized-Program-to-Favorite"><a href="#Add-Customized-Program-to-Favorite" class="headerlink" title="Add Customized Program to Favorite"></a>Add Customized Program to Favorite</h2><p>Suppose the program is named <code>foo</code>, the following instrution helps add the program entry into both menu bar and favorite.</p>
 <h3 id="Create-and-Configure-desktop-File"><a href="#Create-and-Configure-desktop-File" class="headerlink" title="Create and Configure .desktop File"></a>Create and Configure .desktop File</h3><p>First, create a <code>.desktop</code> file in <code>~/.local/share/applications</code> with the following command:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim ~/.local/share/applications/foo.desktop</span><br></pre></td></tr></table></figure>
 <p>Then, write <code>.desktop</code> file with contents as follow:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Encoding=UTF-8</span><br><span class="line">Version=1.0</span><br><span class="line">Type=Application</span><br><span class="line">Terminal=<span class="literal">false</span></span><br><span class="line">Exec=/home/bar/baz/qux/foo</span><br><span class="line">Name=foo</span><br><span class="line">Icon=/home/bar/baz/qux/foo_icon.png</span><br><span class="line">NoDisplay=<span class="literal">false</span></span><br><span class="line">Comment=</span><br></pre></td></tr></table></figure>
-<p>Note that the <code>Exec</code> variable and the <code>Icon</code> variable should be your program executable path and icon path respectively. </p>
+<p>Note that the <code>Exec</code> variable and the <code>Icon</code> variable should store your program executable path and icon path respectively. </p>
 <h3 id="Check-the-Program-in-Menu-Bar-and-Add-It-to-Favorite"><a href="#Check-the-Program-in-Menu-Bar-and-Add-It-to-Favorite" class="headerlink" title="Check the Program in Menu Bar and Add It to Favorite"></a>Check the Program in Menu Bar and Add It to Favorite</h3><p>After saving that file, you will notice that the application icon appears in your menu bar. Then it is quite straightforward to do a simple right click, and select <code>add it to favorite</code>. If you find the program icon shows up in the activities bar, congratulations: the quick entry is created successfully.</p>
 <h3 id="What-If-Duplicate-Icon-Pops-Out-In-the-Bar-When-Launching-the-Program"><a href="#What-If-Duplicate-Icon-Pops-Out-In-the-Bar-When-Launching-the-Program" class="headerlink" title="What If Duplicate Icon Pops Out In the Bar When Launching the Program?"></a>What If Duplicate Icon Pops Out In the Bar When Launching the Program?</h3><p>Do the following steps:</p>
 <ol>
-<li><p>Press Alt + F2</p>
+<li><p>Press <code>Alt + F2</code></p>
 </li>
 <li><p>Input command <code>lg</code></p>
 </li>
@@ -299,22 +300,6 @@
 <!-- Disqus Comments -->
 
 <!-- utterances Comments -->
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 </html>
