@@ -14,7 +14,7 @@
 <meta property="og:description" content="Case 1 : The Repository is fairly New and EmptyIn this case we have to create a repository folder first: 1234$ mkdir bar$ cd bar$ git init# ...create some files Then, add files in that folder and comm">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-31T06:54:12.000Z">
-<meta property="article:modified_time" content="2022-05-31T06:58:00.248Z">
+<meta property="article:modified_time" content="2022-05-31T07:08:54.851Z">
 <meta property="article:author" content="Savkosii">
 <meta name="twitter:card" content="summary">
     
@@ -70,6 +70,8 @@
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2022/05/31/5/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/2022/05/29/3/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -152,7 +154,7 @@
 <p>Then, after adding your files and commiting,  push it to the repository with <code>git push</code>:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add baz</span><br><span class="line">$ git commit -m <span class="string">&quot;add baz&quot;</span></span><br><span class="line">$ git push -u origin new_branch</span><br></pre></td></tr></table></figure>
 <p>Now, navigate to your repository in Github web pages, click the button <code>Compare &amp; pull request</code> and then you can merge the changes manually.</p>
-<h2 id="Case-3-The-Repository-is-not-Empty-with-its-Folder-Available-Locally"><a href="#Case-3-The-Repository-is-not-Empty-with-its-Folder-Available-Locally" class="headerlink" title="Case 3: The Repository is not Empty with its Folder Available Locally"></a>Case 3: The Repository is not Empty with its Folder Available Locally</h2><p>All you need to do is to add your files and commit:</p>
+<h2 id="Case-3-The-Repository-is-not-Empty-with-its-Folder-Available-Locally"><a href="#Case-3-The-Repository-is-not-Empty-with-its-Folder-Available-Locally" class="headerlink" title="Case 3: The Repository is not Empty with its Folder Available Locally"></a>Case 3: The Repository is not Empty with its Folder Available Locally</h2><p>As usual, add your files and commit:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> bar</span><br><span class="line">$ git add baz</span><br><span class="line">$ git commit -m <span class="string">&#x27;add baz&#x27;</span></span><br></pre></td></tr></table></figure>
 <p> Then use <code>git push</code> to upload the changes (Suppose the branch is <code>master</code>).</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
