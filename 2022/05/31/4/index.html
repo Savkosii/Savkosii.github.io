@@ -14,7 +14,7 @@
 <meta property="og:description" content="Case 1 : The Repository is fairly New and EmptyIn this case we have to create a repository folder first: 1234$ mkdir bar$ cd bar$ git init# ...create some files Then, add files in that folder and comm">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-31T06:54:12.000Z">
-<meta property="article:modified_time" content="2022-05-31T06:54:33.522Z">
+<meta property="article:modified_time" content="2022-05-31T06:58:00.248Z">
 <meta property="article:author" content="Savkosii">
 <meta name="twitter:card" content="summary">
     
@@ -146,12 +146,12 @@
 <p>Finally, add new remote origin and push to Github.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github.com:&lt;username&gt;/foo.git</span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
 <p>The <code>-u</code> flag sets the remote origin as the default. This lets you later easily just do <code>git push</code> and <code>git pull</code> without having to specifying an origin.</p>
-<h2 id="Case-2-The-Repository-Folder-is-not-Available-Locally"><a href="#Case-2-The-Repository-Folder-is-not-Available-Locally" class="headerlink" title="Case 2: The Repository Folder is not Available Locally"></a>Case 2: The Repository Folder is not Available Locally</h2><p>This is the case where we have created a repository and uploaded files through Github web pages, and thus no git commitment has ever been made in that repository, or where we have lost the local repository folder by accident.</p>
+<h2 id="Case-2-The-Repository-Folder-is-not-Available-Locally"><a href="#Case-2-The-Repository-Folder-is-not-Available-Locally" class="headerlink" title="Case 2: The Repository Folder is not Available Locally"></a>Case 2: The Repository Folder is not Available Locally</h2><p>This is the case where we have created a repository and uploaded files through Github web pages, and thus no <code>git commit</code> has ever been used for that repository, or where we have lost the local repository folder by accident.</p>
 <p>To solve this, we can first create a new branch:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/&lt;username&gt;/foo.git bar</span><br><span class="line">$ <span class="built_in">cd</span> bar</span><br><span class="line">$ git checkout -b new_branch</span><br><span class="line">$ git remote add upstream https://github.com/&lt;username&gt;/foo.git</span><br></pre></td></tr></table></figure>
-<p>Then, after you add your files and commit,  push it to the repository with <code>git push</code>:</p>
+<p>Then, after adding your files and commiting,  push it to the repository with <code>git push</code>:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add baz</span><br><span class="line">$ git commit -m <span class="string">&quot;add baz&quot;</span></span><br><span class="line">$ git push -u origin new_branch</span><br></pre></td></tr></table></figure>
-<p>Now, navigate to your repository in Github web pages, click the button <code>Compare &amp; pull request</code> and merge the changes manually.</p>
+<p>Now, navigate to your repository in Github web pages, click the button <code>Compare &amp; pull request</code> and then you can merge the changes manually.</p>
 <h2 id="Case-3-The-Repository-is-not-Empty-with-its-Folder-Available-Locally"><a href="#Case-3-The-Repository-is-not-Empty-with-its-Folder-Available-Locally" class="headerlink" title="Case 3: The Repository is not Empty with its Folder Available Locally"></a>Case 3: The Repository is not Empty with its Folder Available Locally</h2><p>All you need to do is to add your files and commit:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> bar</span><br><span class="line">$ git add baz</span><br><span class="line">$ git commit -m <span class="string">&#x27;add baz&#x27;</span></span><br></pre></td></tr></table></figure>
 <p> Then use <code>git push</code> to upload the changes (Suppose the branch is <code>master</code>).</p>
